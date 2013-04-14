@@ -1,1 +1,25 @@
 /* CSS declarations go here */
+
+.enterName {
+  width: 200px;
+  border: 2px solid;
+  border-radius: 5px;
+  height: 20px;
+}
+
+.submitName {
+  width: 70px;
+}
+
+.question {
+  width: 400px;
+  border: 2px solid;
+  border-radius: 5px;
+  height: 20px;
+  text-align: center;
+}
+
+.showName {
+  font-size: 50px;
+  font-color: blue;
+}

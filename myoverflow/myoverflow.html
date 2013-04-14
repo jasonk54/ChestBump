@@ -3,19 +3,38 @@
 </head>
 
 <body>
-  {{> Names}}
+  <h1 class='greeting'>Welcome to Overflow</h1>
+  {{#if session "name"}}
+    <div class='showName'>{{session "name"}}</div>
+  {{/if}}
+  {{renderPage}}
+  {{> questionsList}}
 </body>
 
-<template name="Names">
-  <h1>Welcome to Overflow</h1>
-  <div>
-    <input type="text" class="name" placeholder="Enter your name"/>
+<template name='getName'>
+  <div class='getName'>
+    <input type="text" class="enterName" placeholder="Enter your name"/>
     <input type="button" class="submitName" value="Submit" />
-  </div>
-  <div>
-    <input type="text" class="getName" placeholder="Search Name"/>
-    <input type="button" value="Get Name" />
   </div>
 </template>
 
+<template name='getQuestion'>
+  <div class='getQuestion'>
+    {{#if questions}}
+    <div class='showQuestion'>{{questions}}</div>
+    {{/if}}
+      <input type="text" class="question" placeholder="Ask Question"/>
+      <input type="button" class="submitQuestion" value="Submit" />
+  </div>
+</template>
+
+<template name="questionsList">
+  {{#each questions}}
+    <div>{{> questionDetails}}</div>
+  {{/each}}
+</template>
+
+<template name="questionDetails">
+  <div span="questionsList">{{askerName}}: {{text}}</span>
+</template>
 
