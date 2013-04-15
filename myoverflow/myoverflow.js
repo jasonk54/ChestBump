@@ -56,8 +56,8 @@ if (Meteor.isClient) {
     'click .submitAnswer' : function(event) {
       var response = $(event.target).parent().find('.answer').val();
       if(response) {
-        console.log(this);
         Questions.update(
+          // Need to refactor to handle more than one answer
           this._id, {$set : {answer: response}}
         );
       }
