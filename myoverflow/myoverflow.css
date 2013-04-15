@@ -50,11 +50,23 @@ h1 {
 }
 
 .questionList:hover {
-  color: white;
+  color: blue;
   background-color: grey;
   width: 250px;
+  border-radius: 3px;
+  padding: 5px;
+  opacity: .5;
 }
 
 .drop_answer_box {
+  color: white;
+  background-color: grey;
+  border: 2px solid;
   display: none;
+  border-radius: 7px;
+  opacity: .5;
+  padding: 5px;
+}
+.answer_list {
+  color: blue;
 }

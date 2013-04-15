@@ -1,5 +1,6 @@
 <head>
   <title>Overflow</title>
+  <script scr="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
 </head>
 
 <body>
@@ -38,9 +39,13 @@
 
 <template name="questionDetails">
   <div class="questionList">{{askerName}}: {{text}}</div>
+    {{#if session 'name'}}
     <div class='drop_answer_box'>
       <input type="text" class="answer" placeholder="Answer Me">
-      <input type="button" class="submitAnswer" value="Submit" />
+      <input type="button" class="submitAnswer" value="Submit" />      
+      {{#each answer}}
+       <div class="answer_list">{{text}}</div>
+      {{/each}}
     </div>
+    {{/if}}
 </template>
-

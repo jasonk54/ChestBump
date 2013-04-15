@@ -1,3 +1,7 @@
+// add modal to answer button
+// implement login 
+// implement show-answer page
+
 Questions = new Meteor.Collection('questions');
 
 if (Meteor.isClient) {
@@ -27,7 +31,6 @@ if (Meteor.isClient) {
   });
 
   Template.getQuestion.events({
-    //need to call getName
     'click .submitQuestion' : function() {
       var name = Session.get('name');
       var question = $('.question').val();
@@ -36,12 +39,16 @@ if (Meteor.isClient) {
         Questions.insert({
           text: question,
           askerName: name,
-          answer: null
-          // need to link the user to the questions
+          answer: []
         })
       }
     }
   });
+
+  Template.questionDetails.time = function() {
+    var time = moment();
+    return time;
+  };
 
   Template.questionList.questions = function() {
     return Questions.find({}).fetch().reverse();
@@ -57,14 +64,19 @@ if (Meteor.isClient) {
       var response = $(event.target).parent().find('.answer').val();
       if(response) {
         Questions.update(
-          // Need to refactor to handle more than one answer
-          this._id, {$set : {answer: response}}
+          this._id, {$push : {answer: {text: response}}}
         );
       }
     },
     'click .questionList' : function(event) {
-      $(event.target).parent().find('.drop_answer_box').toggle();
+      $('.getQuestion').slideToggle('slow');
+      $(event.target).parent().find('.drop_answer_box').slideToggle('fast');
     }
+    // 'mouseover .questionList' : function(event) {
+    //   if (!Session.get('name')) {
+    //     $('.questionList').attr('data-tooltip', 'Please enter your user name');
+    //   }
+    // }
   });
 };
 
