@@ -1,4 +1,3 @@
-// add modal to answer button
 // implement login 
 // implement show-answer page
 
@@ -34,7 +33,7 @@ if (Meteor.isClient) {
     'click .submitQuestion' : function() {
       var name = Session.get('name');
       var question = $('.question').val();
-      $('h1').hide();
+      $('h1').hide('slow');
       if (question) {
         Questions.insert({
           text: question,
@@ -72,9 +71,9 @@ if (Meteor.isClient) {
       $('.getQuestion').slideToggle('slow');
       $(event.target).parent().find('.drop_answer_box').slideToggle('fast');
     }
-    // 'mouseover .questionList' : function(event) {
-    //   if (!Session.get('name')) {
-    //     $('.questionList').attr('data-tooltip', 'Please enter your user name');
+    // 'mouseenter .questionList' : function() {
+      
+    //     $('.questionList').tooltip()
     //   }
     // }
   });
