@@ -46,7 +46,7 @@ if (Meteor.isClient) {
   });
 
   Template.questionDetails.time = function() {
-    var time = moment();
+    var time = moment(this.time).fromNow();
     return time;
   };
 

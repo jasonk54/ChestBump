@@ -1,6 +1,6 @@
 <head>
   <title>Overflow</title>
-  <script scr="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
       <input type="text" class="answer" placeholder="Answer Me">
       <input type="button" class="submitAnswer" value="Submit" />      
       {{#each answer}}
-       <div class="answer_list">{{text}}</div>
+       <div class="answer_list">{{text}}</div><span class='time'>{{time}}</span>
       {{/each}}
     </div>
     {{/if}}

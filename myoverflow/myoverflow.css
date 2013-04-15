@@ -70,3 +70,6 @@ h1 {
 .answer_list {
   color: blue;
 }
+.time {
+  font-size: .75em;
+}
