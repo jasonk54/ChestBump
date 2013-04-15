@@ -4,11 +4,13 @@
 
 <body>
   <h1 class='greeting'>Welcome to Overflow</h1>
-  {{#if session "name"}}
-    <div class='showName'>{{session "name"}}</div>
-  {{/if}}
-  {{renderPage}}
-  {{> questionsList}}
+  <div class='outer'>
+    {{#if session "name"}}
+      <div class='showName'>{{session "name"}}</div>
+    {{/if}}
+    {{renderPage}}
+    {{> questionList}}
+  </div>
 </body>
 
 <template name='getName'>
@@ -28,13 +30,17 @@
   </div>
 </template>
 
-<template name="questionsList">
+<template name="questionList">
   {{#each questions}}
     <div>{{> questionDetails}}</div>
   {{/each}}
 </template>
 
 <template name="questionDetails">
-  <div span="questionsList">{{askerName}}: {{text}}</span>
+  <div class="questionList">{{askerName}}: {{text}}</div>
+    <div class='drop_answer_box'>
+      <input type="text" class="answer" placeholder="Answer Me">
+      <input type="button" class="submitAnswer" value="Submit" />
+    </div>
 </template>
 

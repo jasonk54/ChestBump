@@ -1,25 +1,56 @@
 /* CSS declarations go here */
+h1 {
+  text-align: center;
+  color:grey;
+}
+
+.outer {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  margin: 10px 0;
+  padding: 10px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
 
 .enterName {
   width: 200px;
   border: 2px solid;
   border-radius: 5px;
   height: 20px;
+  margin: 5px;
 }
 
-.submitName {
-  width: 70px;
-}
-
-.question {
-  width: 400px;
+.question, .answer {
+  width: 250px;
   border: 2px solid;
   border-radius: 5px;
-  height: 20px;
+  height: 30px;
   text-align: center;
+  margin: 5px;
 }
 
 .showName {
-  font-size: 50px;
-  font-color: blue;
+  display: inline-block;
+  width: 300px;
+  font-size: 1.75em;
+  color: blue;
+  margin: 5px;
+}
+
+.questionList {
+  cursor: pointer;
+  margin: 5px;
+}
+
+.questionList:hover {
+  color: white;
+  background-color: grey;
+}
+
+.drop_answer_box {
+  display: none;
 }
