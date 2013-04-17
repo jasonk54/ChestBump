@@ -1,5 +1,11 @@
 /* CSS declarations go here */
 
-.container-fluid {
-  color: blue;
+.container {
+  width: 550px;
+  height: 350px;
+  background-color: grey;
+}
+
+.login {
+  text-align: center;
 }

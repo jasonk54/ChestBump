@@ -4,14 +4,32 @@
 
 <body>
   {{> facebook_login}}
+  {{> occasions}}
+  {{> users}}
 </body>
 
 <template name="facebook_login">
-  <body>
-    <div class="container">
-      blurb will go here
-      {{loginButtons}}
-    </div>
-  </body>
+  <div class="container">
+    blurb will go here
+  </div>
+  <div class='login'>{{loginButtons}}</div>
 </template>
 
+<template name="occasions">
+  <div class="select">
+    <input type="text" class="input_occasion" placeholder="Beer, drinks, whiskey?" />
+    <input type="button" class="submit_occasion" value="Submit" />
+  </div>
+</template>
+
+<template name="users">
+  <div class="user">
+    {{#each current_user}}
+    {{username}}
+     <div>{{#each emails}}{{address}}{{/each}}</div>
+    {{/each}}
+  </div>
+</template>
+
+<!-- <template name="money_poll">
+  <div class="" -->

@@ -10,3 +10,5 @@ accounts-ui
 accounts-facebook
 bootstrap
 jquery
+accounts-password
+accounts-base
