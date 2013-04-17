@@ -1,5 +1,5 @@
 <head>
-  <title>Fund Me</title>
+  <title>Working</title>
 </head>
 
 <body>
@@ -16,9 +16,17 @@
 </template>
 
 <template name="occasions">
-  <div class="select">
+  <div class="select_occasion">
     <input type="text" class="input_occasion" placeholder="Beer, drinks, whiskey?" />
     <input type="button" class="submit_occasion" value="Submit" />
+  </div>
+  <div class="dropdown">
+    <input type="button" value="Funding Per Friend" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">`
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li>$5</li>
+      <li>$1</li>
+    </ul>
   </div>
 </template>
 
@@ -28,6 +36,39 @@
     {{username}}
      <div>{{#each emails}}{{address}}{{/each}}</div>
     {{/each}}
+  </div>
+  <div class="invite_users">
+    <div class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Modal header</h3>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn">Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+      </div>
+    </div>
+    
+    <a href="#myModal" role="button" class="btn" data-toggle="modal">Invite Friends</a>
+    
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">asdfasdfdas</button>
+      <h3 id="myModalLabel">Friends</h3>
+    </div>
+    <div class="modal-body">
+      {{#each current_user}}
+        {{username}}
+      {{/each}}
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Submit</button>
+    </div>
+  </div>
   </div>
 </template>
 

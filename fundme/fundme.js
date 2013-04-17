@@ -9,15 +9,22 @@ if (Meteor.isClient) {
   Accounts.ui.config({
     passwordSignupFields: 'USERNAME_AND_EMAIL'
   })
-  // Template.users.friends = function() {};
-  // //use modal to select friends that you want to invite
-  // //Need a way to invite friends not already on the list
+  Template.users.friends = function() {};
+  //use modal to select friends that you want to invite
+  //Need a way to invite friends not already on the list
 
-  // Template.occasions.select_event = function() {};
+  Template.occasions.select_event = function() {};
 
-  // Template.occasions.planned_event = function() {};
+  Template.occasions.planned_event = function() {};
+  
+  Template.occasions.money_pool = function() {
+
+  };
 
   Template.occasions.events = {
+    'click a.dropdown-toggle' : function () {
+      $('.dropdown-toggle').dropdown();
+    },
     'click .submit_occasion' : function() {
       var event = $('.input_occasion').val();
       var currUser = Meteor.userId();
@@ -29,8 +36,6 @@ if (Meteor.isClient) {
       });
     }
   }
-
-
 }
 
 if (Meteor.isServer) {
