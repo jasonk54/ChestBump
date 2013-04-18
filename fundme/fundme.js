@@ -16,15 +16,13 @@ if (Meteor.isClient) {
   Template.occasions.select_event = function() {};
 
   Template.occasions.planned_event = function() {};
-  
-  Template.occasions.money_pool = function() {
 
-  };
 
   Template.occasions.events = {
     'click a.dropdown-toggle' : function () {
       $('.dropdown-toggle').dropdown();
     },
+
     'click .submit_occasion' : function() {
       var event = $('.input_occasion').val();
       var currUser = Meteor.userId();

@@ -1,11 +1,15 @@
 /* CSS declarations go here */
 
-.container {
-  width: 550px;
-  height: 350px;
-  background-color: grey;
+body {
+  text-align: center;
+  background-color: #1abc9c;
 }
 
 .login {
   text-align: center;
+}
+
+.dropdown {
+  text-align: center;
+  display: inline-block;
 }
