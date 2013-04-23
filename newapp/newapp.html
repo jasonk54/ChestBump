@@ -1,0 +1,43 @@
+<head>
+  <title>newapp</title>
+</head>
+
+<body>
+  {{> intro}}
+  {{> login}}
+  {{> what_to_do}}
+  {{> friends}}
+</body>
+
+<template name="intro">
+  <input type="button" class="click_to_start" value="click to start"/>
+</template>
+
+<template name="login">
+  <div class="login">{{loginButtons}}</div>
+</template>
+
+<template name="what_to_do">
+  <div class="to_do">
+    <input type="text" class="where" placeholder="what to do"/>
+    <input type="button" class="submitWhere" value="Submit" />
+  </div>
+</template>
+
+<template name="friends">
+  <div class="inviteFriends">
+    <input type="text" placeholder="enter friend's name" class="friend_name" />
+    <input type="email" placeholder="invite friends email" class="email" />
+    <input type="text" placeholder="555-555-5555" class="phone" /><br />
+    <input type="button" class="inviteMore" value="Add More" />
+    <input type="button" class="submitInvite" value="Submit Friends" />
+
+  </div>
+  <div class="listFriends">
+    {{#each jhg}}
+      {{#each friend}}
+        <li>{{name}} {{email}} </li>
+      {{/each}}
+    {{/each}}
+  </div>
+</template>
