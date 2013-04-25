@@ -21,12 +21,6 @@ if (Meteor.isClient) {
     return Friends.find({}).fetch();
   };
 
-
-  Template.intro.events({
-    'click click_to_start' : function () {
-    }
-  }),
-
   Template.create_event.events({
     'click .submitWhere' : function() {
       var whereTo = $('.where').val();
@@ -46,7 +40,9 @@ if (Meteor.isClient) {
 
   Template.invite_friends.events({
     'click .inviteMore' : function() {
+      alert('asdf');
       temp = {name: $('.friend_name').val(), email: $('.email').val(), phone: $('phone').val()};
+      console.log(temp);
       friend.push(temp);
       $('<input type="text" id="first_input" placeholder="enter friends name" class="friend_name" /><input type="email" placeholder="invite friends email" class="email" /><input type="tel" placeholder="555-555-5555" class="phone" /><br />').prependTo('.inviteFriends');
       $('#first_input').focus();
