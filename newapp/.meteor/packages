@@ -9,5 +9,4 @@ preserve-inputs
 bootstrap
 jquery
 accounts-ui-unstyled
-accounts-password
 accounts-facebook

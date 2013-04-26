@@ -18,7 +18,7 @@
   <link rel="apple-touch-icon" sizes="114x114" href="">
 
   <!--JAVASCRIPTS-->
-  <!-- // <script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script> -->
+   <script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
   <script src="assets/js/google-code-prettify/prettify.js"></script>
   <script src="assets/js/bootstrap-transition.js"></script>
   <script src="assets/js/bootstrap-tab.js"></script>
@@ -37,7 +37,7 @@
 
 <body>
   {{> headers}}
-  <div class="container metro">
+  <div class="container metro" data-type="scroll">
     <div class="row">
       <div class="tab-content">
         {{> slider_main}}
@@ -57,7 +57,6 @@
       <div class="row">
         <div class="span12">
           <h1 class="intro">Plan some Shit!</h1>
-          <h4 class="intro">What are you? <span class="colored">&amp;</span> ????</h4>
         </div>
       </div>
 
@@ -81,10 +80,12 @@
     <div class="flexslider">
       <ul class="slides">
         <li>
-          <img src="assets/img/slide3.jpg" />
+          <img src="" />
+          add circular clickable picture.  Link to setup page 1
         </li>
         <li>
-          <img src="assets/img/slide4.jpg" />
+          <img src="" />
+          add circular clickable picture.  Link to setup page 2
         </li>
       </ul>
     </div>
@@ -95,24 +96,24 @@
   <div class=" span12 tab-pane fade" id="services">
     <div class="row">
       <div class="span12">
-        <h3>My BucketList</h3>
+        <h3>follow the circle...</h3>
       </div>
     </div>
     <div class="services">
       <div class="row">
         <div class="span3">
-          <img src="assets/img/services/1.png" alt="">
-          <h2>Events</h2>
+          <img src="assets/img/services/1.png" alt="" class="event_img">
+          <h2>Choose an Event</h2>
           {{> create_event}}
         </div>
         <div class="span3">
-          <img src="assets/img/services/2.png" alt="">
+          <img src="assets/img/services/2.png" alt="" class="invite_img">
           <h2>Invite Friends</h2>
           {{> invite_friends}}
         </div>
         <div class="span3">
-          <img src="assets/img/services/3.png" alt="">
-          <h2>Fund Needed</h2>
+          <img src="assets/img/services/3.png" alt="" class="fund_img">
+          <h2>Funds $$$</h2>
           {{> funding}}
         </div>
 <!--         <div class="row">
@@ -149,7 +150,7 @@
             <div class="row">
               <div class="span8">
               <h3>My Friends</h3>
-                list out friends
+                {{> listfriends}}
                 when you click. it displays the friends profile on the left
             </div>
 
@@ -197,13 +198,11 @@
   <hr>
 
   <div id="portfolio" class="row">
-
     <div class="span12">
       <div class="row">
-
         <div class="span3 block box design">
           <div class="view view-first">
-            <img src="assets/img/port/1/1.jpg" alt="">
+            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRJ3N1-8Ygr5ibNKYOukY1C36AIsgDQzEJE-zkNjHisBBri01OafA" alt="">
             <div class="mask">
               <a class="info" data-rel="prettyPhoto" href="assets/img/big/1.jpg"></a>
               <a class="link" href="#"></a>
@@ -213,7 +212,7 @@
 
         <div class="span3 block box coding">
           <div class="view view-first">
-            <img src="assets/img/port/1/2.jpg" alt="">
+            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRJ3N1-8Ygr5ibNKYOukY1C36AIsgDQzEJE-zkNjHisBBri01OafA" alt="">
             <div class="mask">
               <a class="info" data-rel="prettyPhoto" href="assets/img/big/2.jpg"></a>
               <a class="link" href="#"></a>
@@ -233,37 +232,35 @@
       <div class="span4">
         <h3>...Contact Info...</h3>
         <div class="well">
-          <span><strong> <i class="icon-home"></i>Address:</strong> 1205 Old Bond Street,LONDON</span>
+          <span><strong> <i class="icon-home"></i>Address:</strong> some addy</span>
           <br>
-          <span><strong> <i class="icon-phone"></i>Phone:</strong> (123) 456-789</span>
+          <span><strong> <i class="icon-phone"></i>Phone:</strong> (123) 555-5555</span>
           <br>
-          <span><strong> <i class="icon-inbox"></i>Fax:</strong> (123) 456-789</span>
+          <span><strong> <i class="icon-inbox"></i>Fax:</strong> fax</span>
           <br>
-          <span><strong> <i class="icon-signal"></i>Website:</strong> http://yoursitename.com</span>
+          <span><strong> <i class="icon-signal"></i>Website:</strong> localhose:3000</span>
           <br>
-          <span><strong> <i class="icon-envelope"></i>Email:</strong> info@yoursitename.com</span>
+          <span><strong> <i class="icon-envelope"></i>Email:</strong> jasonk54@gmail.com</span>
         </div>
 
         <ul class="socials">
           <li><a href="#"><i class="icon-facebook"></i></a></li>
           <li><a href="#"><i class="icon-github"></i></a></li>
           <li><a href="#"><i class="icon-twitter"></i></a></li>
-          <li><a href="#"><i class="icon-google-plus"></i></a></li>
-          <li><a href="#"><i class="icon-pinterest"></i></a></li>
           <li><a href="#"><i class="icon-linkedin"></i></a></li>
         </ul>
       </div>
       <div class="message">
-        <input type="text" class="input_message" placeholder="write your sms here" />
-        <input type="button" class="submitMessage" value="Submit SMS" />
+
       </div>
       <div class="span4">
         <h3>...Drop some line's...</h3>
         <div id="note"></div>
         <form class="form" id="ajax-contact-form" action="javascript:alert('Was send!');">
           <input type="text" name="name" class="span4" style="margin-right:25px;" placeholder="Name" />
-          <input  class="span4" name="email" placeholder="Email" />
+          <input type="text" class="input_message" placeholder="write your sms here" />
           <textarea type="text" name="message" placeholder="Message" rows="8" class="span4"></textarea>
+          <input type="button" class="submitMessage btn btn-success" value="Submit SMS" />
           <button type="submit"  class="btn btn-success">Send message</button>
         </form>
       </div>
@@ -280,7 +277,7 @@
 </template>
 
 <template name="create_event">
-  <div class="create_event">
+  <div class="create_event" >
     <input type="text" class="where" placeholder="what to do"/>
     <input type="button" class="submitWhere" value="Submit" />
   </div>
