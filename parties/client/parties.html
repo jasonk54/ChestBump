@@ -1,0 +1,323 @@
+<head>
+  <title>All Tomorrow's Parties</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/icons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/icons/apple-touch-icon-114x114.png">
+
+  <!--style sheet-->
+  <link rel="stylesheet" media="screen" href="css/bootstrap.css"/>
+  <link rel="stylesheet" media="screen" href="css/styles.css"/>
+  <link href="css/bebasneue.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="css/object-carousel.css"/>
+  <link rel="stylesheet" href="css/prettyPhoto.css"/>
+  <link rel="stylesheet" href="css/jquery.tweet.css">
+</head>
+
+<body>
+  {{#if currentUser}}
+    {{> main}}
+  {{/if}}
+  {{loginButtons}}
+</body>
+
+<template name="main">
+  <nav id="nav" class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+        </button>
+        <a href="#plan" class="brand">Plan</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav pull-right">
+              <li class="active"><a href="#home">Home</a></li>
+              <li ><a href="#plan">Plan</a></li>
+              <li ><a href="#events">Events</a></li>
+              <li ><a href="#contact">Contact</a></li>
+              <li >{{loginButtons}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section id="home" class="section home">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="title"><h2>Shaper</h2></div>
+          <p class="subtitle">...a person who makes things...</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <img src="some.png" alt="Image description" />
+<!--           <div id="slider" class="clearfix">
+            <div class="flexslider">
+              <ul class="slides">
+                <li><img src="some.png" alt="Image description" /></li>
+                <li><img src="img/slide2.jpg" alt="Image description" /></li>
+                <li><img src="img/slide3.jpg" alt="Image description" /></li>
+                <li>
+                <img src="img/slide4.jpg" alt="Image description" />
+                  <div class="flex-caption">
+                    <h3>sample caption</h3>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="plan" class="section service">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="headline"><h3>Plan your <span class="color">event</span></h3></div>
+        </div>
+      </div>
+      <div class="row">
+        {{> page}}
+      </div>
+    </div>
+  </section>
+  <section id="events" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="headline"><h3><span class="color">Events</span></h3></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span12">
+          <div id="options" class="clearfix">
+            <ul id="filters" class="option-set clearfix" data-option-key="filter">
+              <li><a href="#filter" data-option-value="*" class="selected">all Events</a></li>
+              <li><a href="#filter" data-option-value=".past">Past</a></li>
+              <li><a href="#filter" data-option-value=".present">Present</a></li>
+              <li><a href="#filter" data-option-value=".future">Future</a></li>
+            </ul>
+          </div>
+        </div>
+        {{> events_list}}
+      </div>
+    </div>
+  </section>
+</template>
+
+<template name="page">
+  {{#if showCreateDialog}}
+    {{> createDialog}}
+  {{/if}}
+
+  {{#if showInviteDialog}}
+    {{> inviteDialog}}
+  {{/if}}
+</template>
+
+<template name="events_list">
+  <div class="span6 ">
+    <ul class="unstyled">
+      {{#each event_list}}
+        <li class="btn btn-primary btn-block event">{{description}} {{date}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="row">
+    {{#if showDetails}}
+      <div class="span4 slide">{{> details}}</div>
+    {{/if}}
+  </div>
+  <div id="calendar"></div>
+</template>
+
+<template name="details">
+  <div class="details">
+    {{#if party}}
+      {{#with party}}
+        <h1>Let's go <span class="color">{{title}}!</span></h1>
+        <div class="description">{{description}}</div>
+        {{> attendance}}
+        <div class="rsvp-buttons">
+          {{#if currentUser}}
+            <input type="button" value="I'm going!"
+                   class="btn btn-small rsvp_yes {{maybeChosen "yes"}}">
+            <input type="button" value="Maybe"
+                   class="btn btn-small rsvp_maybe {{maybeChosen "maybe"}}">
+            <input type="button" value="No"
+                   class="btn btn-small rsvp_no {{maybeChosen "no"}}">
+          {{else}}
+            <i>Sign in to RSVP for this party.</i>
+          {{/if}}
+          <p><small>Posted by {{creatorName}}</small></p>
+        </div>
+        {{#if canRemove}}
+          <div class="alert alert-info"><small>
+              You posted this party and nobody is signed up to go, so if
+              you like, you could
+              <b><a href="#" class="remove">delete this listing</a></b>.
+          </small></div>
+        {{/if}}
+        <div class="funding">
+          <div class="row">
+            <div class="span6">
+              <h4>Funding Level</h4>
+              <div>
+                {{funding}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/with}}
+    {{else}}
+      <h1 class="muted pagination-centered">
+        {{#if anyParties}}
+          Click a party to select it
+        {{else}}
+          Sign in and double click the map to post a party
+        {{/if}}
+      </h1>
+    {{/if}}
+  </div>
+</template>
+
+<template name="attendance">
+  <div class="attendance well well-small">
+    <div class="muted who"><b>Who</b></div>
+    {{#if public}}
+      <div>
+        <b>Everyone</b>
+        <span class="label label-inverse pull-right">Invited</span>
+      </div>
+    {{/if}}
+
+    {{#each rsvps}}
+      <div>
+        {{rsvpName}}
+        {{#if rsvpIs "yes"}}
+          <span class="label label-success pull-right">Going</span>
+        {{/if}}
+        {{#if rsvpIs "maybe"}}
+          <span class="label label-info pull-right">Maybe</span>
+        {{/if}}
+        {{#if rsvpIs "no"}}
+          <span class="label label pull-right">No</span>
+        {{/if}}
+      </div>
+    {{/each}}
+
+    {{#unless public}}
+      {{#each outstandingInvitations}}
+        <div>
+          {{invitationName}}
+          <span class="label label-inverse pull-right">Invited</span>
+        </div>
+      {{/each}}
+    {{/unless}}
+
+    {{#if nobody}}
+      <div>Nobody.</div>
+    {{/if}}
+
+    {{#if canInvite}}
+      <div class="invite">
+        <a href="#" class="btn btn-mini invite">Invite people</a>
+      </div>
+    {{/if}}
+  </div>
+</template>
+
+<template name="createDialog">
+
+  <div >
+    <div>
+      <button type="button" class="close cancel">&times;</button>
+      <h3>Add party</h3>
+    </div>
+
+    <div>
+      {{#if error}}
+        <div class="alert alert-error">{{error}}</div>
+      {{/if}}
+
+      <label>Title</label>
+      <input type="text" class="title span5">
+
+      <label>Funding Needed</label>
+      <input type="number" class="funding span5">
+
+      <label>Date Proposed</label>
+      <input type="date" class="date">
+
+      <label>Description</label>
+      <textarea class="description span5"></textarea>
+
+      <label class="checkbox">
+        <input type="checkbox" class="private">
+        Private party &mdash; invitees only
+      </label>
+    </div>
+
+    <div>
+      <a href="#" class="btn cancel">Cancel</a>
+      <a href="#" class="btn btn-primary save">Add party</a>
+    </div>
+  </div>
+</template>
+
+<template name="inviteDialog">
+  <div class="mask"> </div>
+  <div class="modal">
+    <div class="modal-header">
+      <button type="button" class="close done">&times;</button>
+      <h3>Invite people</h3>
+    </div>
+
+    <div class="modal-body">
+      {{#each uninvited}}
+        <div class="invite-row">
+          <a href="#" class="btn invite">Invite</a>
+          {{displayName}}
+        </div>
+      {{else}}
+        Everyone on the site has already been invited.
+      {{/each}}
+    </div>
+
+    <div class="modal-footer">
+      <a href="#" class="btn btn-primary done">Done</a>
+    </div>
+  </div>
+</template>
+
+<template name="friends_list">
+  <div class="friends">
+    {{#each names}}
+      {{_id}}
+    {{/each}}
+    </div>
+</template>
+
+<template name="fundings">
+  <div class="row">
+    <div class="span6">
+      <h3>Funding Level</h3>
+        <div>hello
+          {{#with funds}}
+            {{description}}
+          {{/with}}
+        </div>
+          <div class="progress-bar blue stripes">
+            <span style="width: 90%"></span>
+          </div>
+    </div>
+  </div>
+</template>
