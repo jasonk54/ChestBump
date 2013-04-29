@@ -1,0 +1,102 @@
+<head>
+  <title>Join me!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  {{#if currentUser}}
+    {{> main}}
+  {{/if}}
+</body>
+
+<template name="page">
+  {{#if showCreateDialog}}
+    {{> createDialog}}
+  {{/if}}
+
+  {{#if showInviteDialog}}
+    {{> inviteDialog}}
+  {{/if}}
+</template>
+
+<template name="createDialog">
+  <div class="mask"> </div>
+  <div class="modal modalbox">
+    <div class="modal-header">
+      <button type="button" class="close cancel">&times;</button>
+      <h3>Add Event</h3>
+    </div>
+
+    <div class="modal-body">
+      {{#if error}}
+        <div class="alert alert-error">{{error}}</div>
+      {{/if}}
+
+      <input type="text" class="title span2" placeholder="Title">
+      <input type="number" class="funding span2" placeholder="Minimum number needed">
+      <input type="date" class="date">
+      <input type="text" class="funding span2" placeholder="Where?">
+      <textarea class="description span2" placeholder="Description of the event and comments"></textarea>
+      <input type="checkbox" class="private" checked="checked">
+      Private party &mdash; invitees only
+    </div>
+
+    <div class="modal-footer">
+      <a href="#events" class="btn cancel">Cancel</a>
+      <a href="#events" class="btn btn-primary save">Add Event</a>
+    </div>
+  </div>
+</template>
+
+<template name="inviteDialog">
+  <div class="mask"> </div>
+  <div class="modal">
+    <div class="modal-header">
+      <button type="button" class="close done">&times;</button>
+      <h3>Invite Players</h3>
+    </div>
+
+    <div class="modal-body">
+      {{#each uninvited}}
+        <div class="invite-row">
+          <a href="#events" class="btn invite">Invite</a>
+          {{displayName}}
+        </div>
+      {{/each}}
+      <div>
+      <label class="checkbox">
+        <input type="checkbox" id="email_checkbox">
+          <em>Send Email</em>
+      </label>
+    </div>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#" class="btn btn-primary done">Done</a>
+    </div>
+  </div>
+</template>
+
+<template name="friends_list">
+  <div class="friends">
+    {{#each names}}
+      {{_id}}
+    {{/each}}
+    </div>
+</template>
+
+<template name="fundings">
+  <div class="row">
+    <div class="span6">
+      <h3>Funding Level</h3>
+        <div>hello
+          {{#with funds}}
+            {{description}}
+          {{/with}}
+        </div>
+          <div class="progress-bar blue stripes">
+            <span style="width: 90%"></span>
+          </div>
+    </div>
+  </div>
+</template>

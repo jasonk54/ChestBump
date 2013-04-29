@@ -23,8 +23,6 @@ attending = function (party) {
   return (_.groupBy(party.rsvps, 'rsvp').yes || []).length;
 };
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
 // Users
 
@@ -34,10 +32,4 @@ displayName = function (user) {
   return user.emails[0].address;
 };
 
-var contactEmail = function (user) {
-  if (user.emails && user.emails.length)
-    return user.emails[0].address;
-  if (user.services && user.services.facebook && user.services.facebook.email)
-    return user.services.facebook.email;
-  return null;
-};
+

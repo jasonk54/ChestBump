@@ -2,12 +2,19 @@ body{
   line-height:1.6em !important;
   color:#666;
 }
+
 .event {
-  width: 100px;
+  padding: 30px;
+}
+
+em {
+  color: #1ABC9C;
 }
 .details {
-  padding-top: 20px;
+  padding: 20px;
   margin: auto;
+  border: solid;
+  border-radius: 20px;
 }
 .modalbox {
   border-radius: 20px;
@@ -104,6 +111,7 @@ a{
     padding-top: 60px;
 }
 .headline {
+  padding: 30px;
     margin: 0px 0 0px;
   font-family: BebasNeueRegular ;
 }
@@ -736,7 +744,6 @@ ul.social {
       section{
         margin-left: -20px;
         margin-right: -20px;
-        background: url("../img/content.gif") repeat scroll 0 0 transparent;
       }
       .main{
         background: transparent;

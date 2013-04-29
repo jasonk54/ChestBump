@@ -1,3 +1,11 @@
+body {
+    font-family: Helvetica, sans-serif;
+
+    background-image: url('/chestbumpbk_gray.jpg');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
 .header {
     padding: 20px 0;
 }
@@ -78,4 +86,27 @@ input.chosen {
     background-color: white;
     padding: 3px;
     padding-bottom: 0;
+}
+
+#home {
+}
+
+.bigButton {
+    padding: 20px;
+    margin: 0;
+
+    background: rgba(0,0,0,0.5);
+
+    border: none;
+    border-radius: 10px 0 0 10px;
+    box-shadow: inset 1px 0 5px rgba(0,0,0,0.5);
+
+    color: grey;
+    font-weight: bold;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    font-size: 32px;
+}
+
+.bigButton + .bigButton {
+    border-radius: 0 10px 10px 0;
 }

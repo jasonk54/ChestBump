@@ -1,0 +1,103 @@
+<template name="events_list">
+  <div class="span8">
+    <ul class="unstyled">
+      {{#each event_list}}
+        <li class="span2 event">Need <strong><em>{{funding}}</em></strong> for <h4><em>{{title}}</em></h4>
+        happening {{time date}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="row">
+    {{#if showDetails}}
+      <div class="span4">{{> details}}</div>
+    {{/if}}
+  </div>
+</template>
+
+<template name="details">
+  <div class="details">
+    {{#if party}}
+      {{#with party}}
+        <h3>Let's go <span class="color">{{title}}!</span></h3>
+        <div class="description">{{description}} ...</div>
+        {{> attendance}}
+        <div class="rsvp-buttons">
+          {{#if currentUser}}
+            <input type="button" value="I'm going!"
+                   class="btn btn-small rsvp_yes {{maybeChosen "yes"}}">
+            <input type="button" value="Maybe"
+                   class="btn btn-small rsvp_maybe {{maybeChosen "maybe"}}">
+            <input type="button" value="No"
+                   class="btn btn-small rsvp_no {{maybeChosen "no"}}">
+          {{/if}}
+          <p><small>Posted by {{creatorName}}</small></p>
+        </div>
+        {{#if canRemove}}
+          <div class="alert alert-info"><small>
+              You posted this party and nobody is signed up to go, so if
+              you like, you could
+              <b><a href="#" class="remove">delete this listing</a></b>.
+          </small></div>
+        {{/if}}
+        <div class="funding">
+          <div class="row">
+            <div class="span6">
+              <h4>Open Spots</h4>
+                {{#if open_spots funding rsvps}}
+                  <span>{{open_spots funding rsvps}}</span>
+                {{else}}
+                  <span><h4><em>This game is a Go!</em></h4></span>
+                  {{/if}}
+            </div>
+          </div>
+        </div>
+      {{/with}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="attendance">
+  <div class="attendance well well-small">
+    <div class="muted who"><b>Who</b></div>
+    {{#if public}}
+      <div>
+        <b>Everyone</b>
+        <span class="label label-inverse pull-right">Invited</span>
+      </div>
+    {{/if}}
+
+    {{#each rsvps}}
+      <div>
+        {{rsvpName}}
+        {{#if rsvpIs "yes"}}
+          <span class="label label-success pull-right">Going</span>
+        {{/if}}
+        {{#if rsvpIs "maybe"}}
+          <span class="label label-info pull-right">Maybe</span>
+        {{/if}}
+        {{#if rsvpIs "no"}}
+          <span class="label label pull-right">No</span>
+        {{/if}}
+      </div>
+    {{/each}}
+
+    {{#unless public}}
+      {{#each outstandingInvitations}}
+        <div>
+          {{invitationName}}
+          <span class="label label-inverse pull-right">Invited</span>
+        </div>
+      {{/each}}
+    {{/unless}}
+
+    {{#if nobody}}
+      <div>Nobody.</div>
+    {{/if}}
+
+    {{#if canInvite}}
+      <div class="invite">
+        <a href="#" class="btn btn-mini invite">Invite people</a>
+      </div>
+    {{/if}}
+  </div>
+</template>

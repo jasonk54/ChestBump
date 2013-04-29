@@ -7,6 +7,21 @@ Meteor.publish("parties", function () {
     {$or: [{"public": true}, {invited: this.userId}, {owner: this.userId}]});
 });
 
+var contactEmail = function (user) {
+  if (user.emails && user.emails.length)
+    return user.emails[0].address;
+  if (user.services && user.services.facebook && user.services.facebook.email)
+    return user.services.facebook.email;
+  return null;
+};
+
+displayName = function (user) {
+  if (user.profile && user.profile.name)
+    return user.profile.name;
+  return user.emails[0].address;
+};
+
+
 Meteor.methods({
   // options should include: title, description, funding, date, public
   createParty: function (options) {
@@ -19,6 +34,8 @@ Meteor.methods({
       throw new Meteor.Error(413, "Title too long");
     if (options.description.length > 1000)
       throw new Meteor.Error(413, "Description too long");
+    if (options.funding.length < 0)
+      throw new Meteor.Error(413, "Need at least one player");
     if (! this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 
@@ -45,18 +62,34 @@ Meteor.methods({
       Parties.update(partyId, { $addToSet: { invited: userId } });
       var from = contactEmail(Meteor.users.findOne(this.userId));
       var to = contactEmail(Meteor.users.findOne(userId));
+
+      // For twilio account
+      var from_sms = "+14159928245";
+      var body_content = "testing hello"
+      var accountSid = "AC3dbd3aa966f48b71ba678baf938f5cbc"
+      // var checkedBox = $('#email_checkbox').attr('checked');
+
       if (Meteor.isServer && to) {
-        // This code only runs on the server. If you didn't want clients
-        // to be able to see it, you could move it to a separate file.
         Email.send({
-          from: "noreply@example.com",
+          from: "jasonk54@gmail.com",
           to: to,
           replyTo: from || undefined,
           subject: "PARTY: " + party.title,
           text:
-            "Come to '" + party.title + "' on (insert date)." +
-            "\n\nCome check it out: " + Meteor.absoluteUrl() + "\n"
+            "Can you come to '" + party.title + "' on (insert date)." +
+            "\n\nLet me know on: " + Meteor.absoluteUrl() + "\n"
         });
+
+        // Twilio api for sending text.
+        Meteor.http.post('https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/SMS/Messages.json',
+        {
+          params : {From: from_sms, To: '+12139250776', Body: body_content},
+          auth: accountSid + ':9c5b65f71f3abe3546e531118f57188b',
+          headers: {'content-type':'application/x-www-form-urlencoded'}
+        }, function () {
+            console.log(arguments)
+          }
+        );
       }
     }
   },

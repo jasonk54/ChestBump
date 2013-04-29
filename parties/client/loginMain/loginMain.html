@@ -1,0 +1,13 @@
+<head></head>
+<body>
+  {{#unless currentUser}}
+    {{> loginPage}}
+  {{/unless}}
+</body>
+
+<template name="loginPage">
+  <div class="container">
+    <img src="loginmain.png">
+    {{loginButtons}}
+  </div>
+</template>
