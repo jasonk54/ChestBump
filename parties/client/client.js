@@ -23,7 +23,7 @@ var open_main = function() {
 
 var close_events = function() {
   Session.set("showEvents", false);
-}
+};
 
 Template.createDialog.events({
   // Need to add location val()

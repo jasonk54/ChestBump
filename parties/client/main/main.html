@@ -2,7 +2,6 @@
 <body></body>
 
 <template name="main">
-
   <nav id="nav" class="navbar navbar-fixed-top ">
     <div class="navbar-inner">
       <div class="container">
@@ -14,9 +13,9 @@
         <a href="#plan" class="brand newEvent">Play</a>
         <div class="nav-collapse collapse">
           <ul class="nav pull-right">
-              <li class="active"><a href="#home">Home</a></li>
-              <li ><a class="create">Plan</a></li>
-              <li ><a href="#events">Events</a></li>
+              <li class="active homepage"><a href="#home">Home</a></li>
+              <li ><a href="#" class="create">Plan</a></li>
+              <li ><a href="#" class="join_events">Events</a></li>
               <li >{{loginButtons}}</li>
           </ul>
         </div>
@@ -29,8 +28,8 @@
       <div class="row">
         <div class="span12">
            <h2>Chest Bump</h2>
-           <button class="bigButton color">Join Game</button>
-           <button class="bigButton create color">Create Game</button>
+           <button class="bigButton join_events">Join <em>Game</em></button>
+           <button class="bigButton create">Create <em>Game</em></button>
         </div>
       </div>
     </div>
@@ -58,7 +57,7 @@
     <div class="container">
       <div class="row">
         <div class="span12">
-          <div class="headline"><h3><span class="color">Events</span></h3></div>
+          <div class="headline"><h3>Available <span class="color">Events</span></h3></div>
         </div>
       </div>
       <div class="row">

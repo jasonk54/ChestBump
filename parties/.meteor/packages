@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 preserve-inputs
-accounts-ui
 accounts-password
 bootstrap
 email
@@ -15,3 +14,4 @@ moment
 fullcalendar
 isotope
 jquery-ui
+accounts-ui-unstyled

@@ -67,7 +67,14 @@ Template.details.open_spots = function (currentNum, attending) {
     return false;
   }
   return spots;
-}
+};
+
+Template.details.progress = function (currentNum, attending) {
+  var per = attending.length/currentNum
+  var percentage = per*100;
+  console.log(percentage)
+  return percentage;
+};
 
 var openInviteDialog = function () {
   Session.set("showInviteDialog", true);

@@ -35,7 +35,7 @@ Meteor.methods({
     if (options.description.length > 1000)
       throw new Meteor.Error(413, "Description too long");
     if (options.funding.length < 0)
-      throw new Meteor.Error(413, "Need at least one player");
+      throw new Meteor.Error(413, "Need to add at least one player");
     if (! this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 

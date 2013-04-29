@@ -1,5 +1,5 @@
 <template name="events_list">
-  <div class="span8">
+  <div class="span12">
     <ul class="unstyled">
       {{#each event_list}}
         <li class="span2 event">Need <strong><em>{{funding}}</em></strong> for <h4><em>{{title}}</em></h4>
@@ -40,16 +40,15 @@
           </small></div>
         {{/if}}
         <div class="funding">
-          <div class="row">
-            <div class="span6">
-              <h4>Open Spots</h4>
-                {{#if open_spots funding rsvps}}
-                  <span>{{open_spots funding rsvps}}</span>
-                {{else}}
-                  <span><h4><em>This game is a Go!</em></h4></span>
-                  {{/if}}
-            </div>
-          </div>
+          <h4>Open Spots</h4>
+            {{#if open_spots funding rsvps}}
+              <span>{{open_spots funding rsvps}}</span>
+              <div class="progress progress-success progress-striped">
+                <div class="bar" style="width: {{progress funding rsvps}}%"></div>
+              </div>
+            {{else}}
+              <span><h4><em>This game is a Go!</em></h4></span>
+            {{/if}}
         </div>
       {{/with}}
     {{/if}}

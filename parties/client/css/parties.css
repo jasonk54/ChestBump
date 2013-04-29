@@ -107,6 +107,16 @@ input.chosen {
     font-size: 32px;
 }
 
+#events {
+    background-color: white;
+}
 .bigButton + .bigButton {
     border-radius: 0 10px 10px 0;
+}
+
+.event {
+    border: solid whitesmoke;
+    border-radius: 30px;
+    margin: 10px;
+    background-color: rgba(171, 171, 172, 0.29);
 }

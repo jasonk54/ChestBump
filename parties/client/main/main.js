@@ -7,6 +7,14 @@ var openCreateDialog = function () {
 Template.main.events({
   'click .create' : function () {
     openCreateDialog();
+  },
+  'click .join_events' : function () {
+    Session.set("showEvents", true);
+    Session.set("showMain", false);
+  },
+  'click .homepage' : function () {
+    Session.set("showMain", true);
+    Session.set("showEvents", false);
   }
 });
 
