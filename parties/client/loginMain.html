@@ -1,0 +1,21 @@
+<head></head>
+<body>
+  {{#unless currentUser}}
+    {{> loginPage}}
+  {{/unless}}
+</body>
+
+<template name="loginPage">
+  <div class="container">
+    <div class="login">
+      <p>
+        1. Choose an Event
+        2. Enter the details to the event.
+          Event name, date & time, money required to attend(if any), and select who you want to invite
+        3. List out "things to accomplish" before the event
+        4. Track you event
+      </p>
+      {{loginButtons}}
+    </div>
+  </div>
+</template>

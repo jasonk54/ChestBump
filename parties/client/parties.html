@@ -1,26 +1,12 @@
 <head>
-  <title>All Tomorrow's Parties</title>
+  <title>Events</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="img/icons/favicon.ico">
-  <link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="img/icons/apple-touch-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="img/icons/apple-touch-icon-114x114.png">
-
-  <!--style sheet-->
-  <link rel="stylesheet" media="screen" href="css/bootstrap.css"/>
-  <link rel="stylesheet" media="screen" href="css/styles.css"/>
-  <link href="css/bebasneue.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/flexslider.css">
-  <link rel="stylesheet" href="css/object-carousel.css"/>
-  <link rel="stylesheet" href="css/prettyPhoto.css"/>
-  <link rel="stylesheet" href="css/jquery.tweet.css">
 </head>
 
 <body>
   {{#if currentUser}}
     {{> main}}
   {{/if}}
-  {{loginButtons}}
 </body>
 
 <template name="main">
@@ -38,7 +24,7 @@
               <li class="active"><a href="#home">Home</a></li>
               <li ><a href="#plan">Plan</a></li>
               <li ><a href="#events">Events</a></li>
-              <li ><a href="#contact">Contact</a></li>
+              <li ><a href="#event_calendar">Event Calendar</a></li>
               <li >{{loginButtons}}</li>
           </ul>
         </div>
@@ -57,22 +43,7 @@
     <div class="container">
       <div class="row">
         <div class="span12">
-          <img src="some.png" alt="Image description" />
-<!--           <div id="slider" class="clearfix">
-            <div class="flexslider">
-              <ul class="slides">
-                <li><img src="some.png" alt="Image description" /></li>
-                <li><img src="img/slide2.jpg" alt="Image description" /></li>
-                <li><img src="img/slide3.jpg" alt="Image description" /></li>
-                <li>
-                <img src="img/slide4.jpg" alt="Image description" />
-                  <div class="flex-caption">
-                    <h3>sample caption</h3>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div> -->
+          <a href="#plan"><img src="some.png" href="#plan"></a>
         </div>
       </div>
     </div>
@@ -97,7 +68,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="span12">
+      <!--   <div class="span12">
           <div id="options" class="clearfix">
             <ul id="filters" class="option-set clearfix" data-option-key="filter">
               <li><a href="#filter" data-option-value="*" class="selected">all Events</a></li>
@@ -106,9 +77,16 @@
               <li><a href="#filter" data-option-value=".future">Future</a></li>
             </ul>
           </div>
-        </div>
+        </div> -->
         {{> events_list}}
       </div>
+    </div>
+  </section>
+  <section id="event_calendar" class="section">
+    <div class="container">
+      {{#constant}}
+        <div id="calendar"></div>
+      {{/constant}}
     </div>
   </section>
 </template>
@@ -129,6 +107,7 @@
       {{#each event_list}}
         <li class="btn btn-primary btn-block event">{{description}} {{date}}</li>
       {{/each}}
+      {{time}}
     </ul>
   </div>
   <div class="row">
@@ -136,7 +115,6 @@
       <div class="span4 slide">{{> details}}</div>
     {{/if}}
   </div>
-  <div id="calendar"></div>
 </template>
 
 <template name="details">
@@ -177,14 +155,6 @@
           </div>
         </div>
       {{/with}}
-    {{else}}
-      <h1 class="muted pagination-centered">
-        {{#if anyParties}}
-          Click a party to select it
-        {{else}}
-          Sign in and double click the map to post a party
-        {{/if}}
-      </h1>
     {{/if}}
   </div>
 </template>
@@ -236,18 +206,11 @@
 </template>
 
 <template name="createDialog">
-
-  <div >
-    <div>
-      <button type="button" class="close cancel">&times;</button>
-      <h3>Add party</h3>
-    </div>
-
+  <div>
     <div>
       {{#if error}}
         <div class="alert alert-error">{{error}}</div>
       {{/if}}
-
       <label>Title</label>
       <input type="text" class="title span5">
 
@@ -261,14 +224,14 @@
       <textarea class="description span5"></textarea>
 
       <label class="checkbox">
-        <input type="checkbox" class="private">
-        Private party &mdash; invitees only
+        <input type="checkbox" class="private" checked="checked">
+          Private party &mdash; invitees only
       </label>
     </div>
 
     <div>
-      <a href="#" class="btn cancel">Cancel</a>
-      <a href="#" class="btn btn-primary save">Add party</a>
+      <a href="#plan" class="btn cancel">Cancel</a>
+      <a href="#events" class="btn btn-primary save">Add party</a>
     </div>
   </div>
 </template>

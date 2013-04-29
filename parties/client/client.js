@@ -3,9 +3,8 @@ Meteor.subscribe("parties");
 
 // If no party selected, select one.
 Meteor.startup(function () {
+  openCreateDialog();
   Deps.autorun(function () {
-    openCreateDialog();
-    $('#calendar').fullCalendar({});
     if (! Session.get("selected")) {
       // Refactor this to show the highest rsvp event
       var party = Parties.findOne();
@@ -14,24 +13,6 @@ Meteor.startup(function () {
     }
   });
 });
-///////////////////////////////////////////////////////////////////////////////
-// Party details sidebar
-
-Template.page.rsvpName = function () {
-  var user = Meteor.users.findOne(this.user);
-  return displayName(user);
-};
-
-// Uncomment if you want modal
-// Template.page.events({
-//   'click .newEvent' : function () {
-//     openCreateDialog();
-//   }
-// });
-
-Template.fundings.funds = function () {
-
-};
 
 Template.events_list.event_list = function () {
   return Parties.find({}).fetch();
@@ -50,6 +31,18 @@ Template.events_list.events({
     console.log(this);
   }
 });
+
+Template.events_list.time = function () {
+  // need to make tooltip with time from
+  return moment("20130430", "YYYYMMDD").fromNow();
+}
+///////////////////////////////////////////////////////////////////////////////
+// Party details sidebar
+
+Template.page.rsvpName = function () {
+  var user = Meteor.users.findOne(this.user);
+  return displayName(user);
+};
 
 Template.details.party = function () {
   return Parties.findOne(Session.get("selected"));
@@ -218,7 +211,7 @@ Template.inviteDialog.displayName = function () {
 
 Template.friends_list.names = function () {
   return Meteor.users.find({}).fetch();
-}
+};
 
 // Add this back if you want modal
 // <template name="createDialog">
@@ -258,3 +251,11 @@ Template.friends_list.names = function () {
 //     </div>
 //   </div>
 // </template>
+
+// Uncomment if you want modal
+// Template.page.events({
+//   'click .newEvent' : function () {
+//     openCreateDialog();
+//   }
+// });
+
