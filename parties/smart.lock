@@ -9,7 +9,8 @@
       "font-awesome": {},
       "moment": {},
       "fullcalendar": {},
-      "isotope": {}
+      "isotope": {},
+      "twilio": {}
     },
     "packages": {
       "font-awesome": {
@@ -31,6 +32,11 @@
         "git": "https://github.com/digioak/meteor-isotope.git",
         "tag": "v0.0.3",
         "commit": "6fa8d0cd5ad50ea2292f2ce03ea619adc6c13c58"
+      },
+      "twilio": {
+        "git": "https://github.com/cultofmetatron/twilio-meteor.git",
+        "tag": "v1.1.0",
+        "commit": "ca454cabac4b074b4a6a61dfe8c9d118d0934b3a"
       },
       "jquery-ui": {
         "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",

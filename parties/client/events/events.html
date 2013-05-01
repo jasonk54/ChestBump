@@ -1,9 +1,9 @@
 <template name="events_list">
   <div class="span12">
-    <ul class="unstyled">
+    <ul class="unstyled team">
       {{#each event_list}}
-        <li class="span2 event">Need <strong><em>{{funding}}</em></strong> for <h4><em>{{title}}</em></h4>
-        happening {{time date}}</li>
+        <li class="span2 event">Need <strong><em>{{people_count}}</em></strong> for <h4><em>{{title}}</em></h4>
+        happening {{time_from date}}</li>
       {{/each}}
     </ul>
   </div>
@@ -15,43 +15,46 @@
 </template>
 
 <template name="details">
-  <div class="details">
-    {{#if party}}
-      {{#with party}}
-        <h3>Let's go <span class="color">{{title}}!</span></h3>
-        <div class="description">{{description}} ...</div>
-        {{> attendance}}
-        <div class="rsvp-buttons">
-          {{#if currentUser}}
-            <input type="button" value="I'm going!"
-                   class="btn btn-small rsvp_yes {{maybeChosen "yes"}}">
-            <input type="button" value="Maybe"
-                   class="btn btn-small rsvp_maybe {{maybeChosen "maybe"}}">
-            <input type="button" value="No"
-                   class="btn btn-small rsvp_no {{maybeChosen "no"}}">
-          {{/if}}
-          <p><small>Posted by {{creatorName}}</small></p>
-        </div>
-        {{#if canRemove}}
-          <div class="alert alert-info"><small>
-              You posted this party and nobody is signed up to go, so if
-              you like, you could
-              <b><a href="#" class="remove">delete this listing</a></b>.
-          </small></div>
-        {{/if}}
-        <div class="funding">
-          <h4>Open Spots</h4>
-            {{#if open_spots funding rsvps}}
-              <span>{{open_spots funding rsvps}}</span>
-              <div class="progress progress-success progress-striped">
-                <div class="bar" style="width: {{progress funding rsvps}}%"></div>
-              </div>
-            {{else}}
-              <span><h4><em>This game is a Go!</em></h4></span>
+  <div class="modal modalbox hide fades detailsmodal">
+    <div class="details">
+      {{#if game}}
+        {{#with game}}
+          <h3>Let's go <span class="color">{{title}}!</span></h3>
+          <div class="description">{{description}} ...</div>
+          {{> attendance}}
+          <div class="rsvp-buttons">
+            {{#if currentUser}}
+              <input type="button" value="I'm going!"
+                     class="btn btn-small rsvp_yes {{maybeChosen "yes"}}">
+              <input type="button" value="Maybe"
+                     class="btn btn-small rsvp_maybe {{maybeChosen "maybe"}}">
+              <input type="button" value="No"
+                     class="btn btn-small rsvp_no {{maybeChosen "no"}}">
             {{/if}}
-        </div>
-      {{/with}}
-    {{/if}}
+            <p><small>Posted by {{creatorName}}</small></p>
+          </div>
+          {{#if canRemove}}
+            <div class="alert alert-info"><small>
+                You posted this game and nobody is signed up to go, so if
+                you like, you could
+                <b><a href="#" class="remove">delete this listing</a></b>.
+            </small></div>
+          {{/if}}
+          <div class="people_count">
+            <h4>Open Spots</h4>
+              {{#if open_spots people_count rsvps}}
+                <span>{{open_spots people_count rsvps}}</span>
+                <div class="progress progress-success progress-striped">
+                  <div class="bar" style="width: {{progress people_count rsvps}}%"></div>
+                </div>
+              {{else}}
+                <span><h4><em>This game is a Go!</em></h4></span>
+              {{/if}}
+          </div>
+        {{/with}}
+      {{/if}}
+      <input type="button" class="exit_modal btn btn-primary done" value="Done">
+    </div>
   </div>
 </template>
 

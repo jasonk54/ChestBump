@@ -1,5 +1,5 @@
 <head>
-  <title>Join me!</title>
+  <title>Play</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -20,8 +20,8 @@
 </template>
 
 <template name="createDialog">
-  <div class="mask"> </div>
-  <div class="modal modalbox">
+  <div class="mask"></div>
+  <div class="modal modalbox fades">
     <div class="modal-header">
       <button type="button" class="close cancel">&times;</button>
       <h3>Add Event</h3>
@@ -33,12 +33,12 @@
       {{/if}}
 
       <input type="text" class="title span2" placeholder="Title">
-      <input type="number" class="funding span2" placeholder="Minimum number needed">
+      <input type="number" class="people_count span2" placeholder="Minimum number needed">
       <input type="date" class="date">
-      <input type="text" class="funding span2" placeholder="Where?">
+      <input type="text" class="people_count span2" placeholder="Where?">
       <textarea class="description span2" placeholder="Description of the event and comments"></textarea>
       <input type="checkbox" class="private" checked="checked">
-      Private party &mdash; invitees only
+      Private game &mdash; invitees only
     </div>
 
     <div class="modal-footer">
@@ -85,10 +85,10 @@
     </div>
 </template>
 
-<template name="fundings">
+<template name="people_counts">
   <div class="row">
     <div class="span6">
-      <h3>Funding Level</h3>
+      <h3>Player needed Level</h3>
         <div>hello
           {{#with funds}}
             {{description}}

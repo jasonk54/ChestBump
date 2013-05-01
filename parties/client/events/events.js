@@ -1,5 +1,5 @@
 Template.events_list.event_list = function () {
-  return Parties.find({}).fetch();
+  return Games.find({}).fetch();
 };
 Template.events_list.showDetails = function () {
   if (Session.get('showDetails') === undefined) {
@@ -10,16 +10,13 @@ Template.events_list.showDetails = function () {
 
 Template.events_list.events({
   'click .event' : function() {
-    Parties.findOne(Session.set("selected", this._id));
+    Games.findOne(Session.set("selected", this._id));
     Session.set('showDetails', true);
-  },
-  //add tooltip: names
-  'mouseover .event' : function() {
-    $('.event').tooltip('show');
+    $('.detailsmodal').toggle('slow');
   }
 });
 
-Template.events_list.time = function (date) {
+Template.events_list.time_from = function (date) {
   if (date) {
     return moment(date, "YYYYMMDD").fromNow();
   } else {
@@ -27,19 +24,19 @@ Template.events_list.time = function (date) {
   }
 };
 ///////////////////////////////////////////////////////////////////////////////
-// Party details sidebar
+// Game details sidebar
 
 Template.page.rsvpName = function () {
   var user = Meteor.users.findOne(this.user);
   return displayName(user);
 };
 
-Template.details.party = function () {
-  return Parties.findOne(Session.get("selected"));
+Template.details.game = function () {
+  return Games.findOne(Session.get("selected"));
 };
 
-Template.details.anyParties = function () {
-  return Parties.find().count() > 0;
+Template.details.anyGames = function () {
+  return Games.find().count() > 0;
 };
 
 Template.details.creatorName = function () {
@@ -98,13 +95,16 @@ Template.details.events({
     return false;
   },
   'click .remove': function () {
-    Parties.remove(this._id);
+    Games.remove(this._id);
     return false;
+  },
+  'click .exit_modal' : function () {
+    $('.detailsmodal').hide();
   }
 });
 
 ///////////////////////////////////////////////////////////////////////////////
-// Party attendance widget
+// game Gttendance widget
 
 Template.attendance.rsvpName = function () {
   var user = Meteor.users.findOne(this.user);
@@ -112,10 +112,10 @@ Template.attendance.rsvpName = function () {
 };
 
 Template.attendance.outstandingInvitations = function () {
-  var party = Parties.findOne(this._id);
+  var game = Games.findOne(this._id);
   return Meteor.users.find({$and: [
-    {_id: {$in: party.invited}}, // they're invited
-    {_id: {$nin: _.pluck(party.rsvps, 'user')}} // but haven't RSVP'd
+    {_id: {$in: game.invited}}, // they're invited
+    {_id: {$nin: _.pluck(game.rsvps, 'user')}} // but haven't RSVP'd
   ]});
 };
 

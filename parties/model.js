@@ -1,31 +1,28 @@
-Parties = new Meteor.Collection("parties");
+Games = new Meteor.Collection("games");
 
-Parties.allow({
-  insert: function (userId, party) {
-    return false; // no inserts -- use createParty method
+Games.allow({
+  insert: function (userId, game) {
+    return false;
   },
-  update: function (userId, party, fields, modifier, funding) {
-    if (userId !== party.owner)
-      return false; // not the owner
+  update: function (userId, game, fields, modifier, people_count) {
+    if (userId !== game.owner)
+      return false;
 
     var allowed = ["title", "description"];
     if (_.difference(fields, allowed).length)
-      return false; // tried to write to forbidden field
+      return false;
     return true;
   },
-  remove: function (userId, party) {
-    // You can only remove parties that you created and nobody is going to.
-    return party.owner === userId && attending(party) === 0;
+  remove: function (userId, game) {
+    return game.owner === userId && attending(game) === 0;
   }
 });
 
-attending = function (party) {
-  return (_.groupBy(party.rsvps, 'rsvp').yes || []).length;
+attending = function (game) {
+  return (_.groupBy(game.rsvps, 'rsvp').yes || []).length;
 };
 
-///////////////////////////////////////////////////////////////////////////////
 // Users
-
 displayName = function (user) {
   if (user.profile && user.profile.name)
     return user.profile.name;

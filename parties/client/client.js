@@ -1,21 +1,22 @@
 Meteor.subscribe("directory");
-Meteor.subscribe("parties");
+Meteor.subscribe("games");
 
 Meteor.startup(function () {
   open_main();
   close_events();
+
   Deps.autorun(function () {
     if (! Session.get("selected")) {
       // Refactor this to show the highest rsvp event
-      var party = Parties.findOne();
-      if (party)
-        Session.set("selected", party._id);
+      var game = Games.findOne();
+      if (game)
+        Session.set("selected", game._id);
     }
-    // $('#calendar').fullCalendar({});
   });
 });
 ///////////////////////////////////////////////////////////////////////////////
-// Create Party dialog
+// Create game dialog
+
 
 var open_main = function() {
   Session.set('showMain', true);
@@ -27,24 +28,24 @@ var close_events = function() {
 
 Template.createDialog.events({
   // Need to add location val()
-  // Need to change funding to people_needed
+  // Need to change people_count to people_needed
   'click .save': function (event, template) {
     var title = template.find(".title").value;
-    var funding = template.find(".funding").value;
+    var people_count = template.find(".people_count").value;
     var description = template.find(".description").value;
     var event_date = template.find(".date").value;
     var public = ! template.find(".private").checked;
 
     if (title.length && description.length) {
-      Meteor.call('createParty', {
+      Meteor.call('createGame', {
         title: title,
-        funding: funding,
+        people_count: people_count,
         date: event_date,
         description: description,
         public: public
-      }, function (error, party) {
+      }, function (error, game) {
         if (! error) {
-          Session.set("selected", party);
+          Session.set("selected", game);
           if (! public && Meteor.users.find().count() > 1)
             openInviteDialog();
         }
@@ -91,11 +92,11 @@ Template.inviteDialog.events({
 });
 
 Template.inviteDialog.uninvited = function () {
-  var party = Parties.findOne(Session.get("selected"));
-  if (! party)
-    return []; // party hasn't loaded yet
-  return Meteor.users.find({$nor: [{_id: {$in: party.invited}},
-                                   {_id: party.owner}]});
+  var game = Games.findOne(Session.get("selected"));
+  if (! game)
+    return []; // game hasn't loaded yet
+  return Meteor.users.find({$nor: [{_id: {$in: game.invited}},
+                                   {_id: game.owner}]});
 };
 
 Template.inviteDialog.displayName = function () {
@@ -117,7 +118,7 @@ Template.friends_list.names = function () {
 //       <input type="text" class="title span5">
 
 //       <label>Minimum Needed</label>
-//       <input type="number" class="funding span">
+//       <input type="number" class="people_count span">
 
 //       <label>Date Proposed</label>
 //       <input type="date" class="date">
@@ -127,7 +128,7 @@ Template.friends_list.names = function () {
 
 //       <label class="checkbox">
 //         <input type="checkbox" class="private" checked="checked">
-//           Private party &mdash; invitees only
+//           Private game &mdash; invitees only
 //       </label>
 //     </div>
 
