@@ -64,14 +64,8 @@ Meteor.methods({
       Games.update(gameId, { $addToSet: { invited: userId } });
       var from = contactEmail(Meteor.users.findOne(this.userId));
       var to = contactEmail(Meteor.users.findOne(userId));
-
-      // For twilio account
-      var from_sms = "+14159928245";
-      var to_sms = "+12139250776"
-      var body_content = "testing hello";
-      var accountSid = "AC5933d34eda950c0bb81ed94811a9c13c";
-      var authToken = "99143cc9267d4ad6db22cdc12856ad5a";
-      // var checkedBox = $('#email_checkbox').attr('checked');
+      var body_content = "Are you game for " + game.title + " on " + game.date + "." +
+            "\n\nLook me up on: " + Meteor.absoluteUrl() + " to rsvp.  Don't forget!\n";
 
       if (Meteor.isServer && to) {
         Email.send({
@@ -79,19 +73,41 @@ Meteor.methods({
           to: to,
           replyTo: from || undefined,
           subject: "Game: " + game.title,
-          text:
-            "Are you game for " + game.title + " on " + game.date + "." +
-            "\n\nLook me up on: " + Meteor.absoluteUrl() + "to rsvp.  Don't forget!\n"
+          text: body_content
         });
 
-        // Uncomment to send text
-        // Twilio to send out SMS to players
-        // var client_twilio = Twilio(accountSid, "99143cc9267d4ad6db22cdc12856ad5a");
-        // client_twilio.sendSms({
-        //     to: to_sms,
-        //     from: from_sms,
-        //     body: 'word to your mother.'
+      // For twilio account.  Uncomment to use.
+      // var from_sms = "+14159928245";
+      // var to_sms = "+12139250776";
+      // var accountSid = "AC5933d34eda950c0bb81ed94811a9c13c";
+      // var authToken = "99143cc9267d4ad6db22cdc12856ad5a";
+      // var checkedBox = $('#email_checkbox').attr('checked');
 
+      // Phone numbers.  Refactor to retrieve phone numbers at login
+      // var jasonkang = {"cDprEHottRJ8h3eLg" : "+12139250776"};
+      // var chad = {"a6MZpZFkSSiZQztdy" : "+15038609618"};
+      // var andrew = {"qa9EdxB2fqjYyHCvj" : "+17816401203"};
+      // var tony = {"76hJagT9eDp9F9SA9" : "+19494446451"};
+      // var dan = {"KKWqxoH8YfrxdB5nW" : "+15133074346"};
+      // var jasonk54 = {"yWW2gubi82CjtSw39" : "+12139250776"};
+
+      // var contacts = [jasonkang, chad, andrew, tony, dan, jasonk54];
+      // var to_sms;
+
+      // _.each(contacts, function(el) {
+      //   if (Object.keys(el) === Meteor.users.findOne(userId)) {
+      //     to_sms = el[Meteor.users.findOne(userId)];
+      //   }
+      // });
+      // console.log(to_sms);
+
+      //   // Uncomment to send text
+      //   // Twilio to send out SMS to players
+      //   var client_twilio = Twilio(accountSid, "99143cc9267d4ad6db22cdc12856ad5a");
+      //   client_twilio.sendSms({
+      //       to: to_sms,
+      //       from: from_sms,
+      //       body: body_content
         // }, function(err, responseData) {
         //     if (!err) {
         //         console.log(responseData.from); // outputs "+14506667788"
@@ -100,7 +116,7 @@ Meteor.methods({
         //       console.log(err);
         //     }
         // });
-      }
+      };
     }
   },
 
