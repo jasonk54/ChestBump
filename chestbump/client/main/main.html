@@ -1,0 +1,76 @@
+<head></head>
+<body></body>
+
+<template name="main">
+  <nav id="nav" class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="brand join_events">Chest<em>Bump</em></a>
+        <div class="nav-collapse collapse">
+          <ul class="nav pull-right">
+              <li class="active homepage"><a href="#home">Home</a></li>
+              <li ><a href="#" class="create">Create</a></li>
+              <li ><a href="#" class="join_events">Games</a></li>
+              <li >{{loginButtons}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  {{#if showMain}}
+  <section id="home" class="section home">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+           <h2 class="brand">Play?</h2>
+           <button class="bigButton join_events">Join <em>Game</em></button>
+           <button class="bigButton create">Create <em>Game</em></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{/if}}
+
+  {{> page}}
+
+  {{#if showPlan}}
+    <section id="plan" class="section service">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="headline"><h3>Plan your <span class="color">event</span></h3></div>
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+    </section>
+  {{/if}}
+  {{#if showEvents}}
+  <section id="events" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="headline"><h3>Available <span class="color">Games</span></h3></div>
+        </div>
+      </div>
+      <div class="row">
+        {{> events_list}}
+      </div>
+    </div>
+  </section>
+  <section id="event_calendar" class="section">
+    <div class="container">
+      {{#constant}}
+        <div id="calendar"></div>
+      {{/constant}}
+    </div>
+  </section>
+  {{/if}}
+</template>

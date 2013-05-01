@@ -1,0 +1,94 @@
+body {
+  font-family: Helvetica, sans-serif;
+
+  background-image: url('/chestbumpbk_gray.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+.header {
+  padding: 20px 0;
+}
+.details {
+  margin-top: -18px;
+}
+.mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: #000000;
+  opacity: .4;
+  z-index: 1;
+}
+.invite-row .invite {
+  margin: 10px 10px 10px 0;
+}
+.rsvp-buttons {
+  text-align: center;
+  margin: 40px 0 40px 0;
+}
+.description {
+  margin: 20px 0 20px 0;
+}
+.attendance .who {
+  margin-bottom: 5px;
+}
+.attendance .invite {
+  text-align: center;
+}
+input.chosen {
+  font-weight: bold;
+}
+.bigButton {
+  padding: 20px;
+  margin: 0;
+  display: inline-block;
+
+  background: rgba(0,0,0,0.5);
+
+  border: none;
+  border-radius: 10px 0 0 10px;
+  box-shadow: inset 1px 0 5px rgba(0,0,0,0.5);
+
+  color: grey;
+  font-weight: bold;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+  font-size: 32px;
+  opacity: .9;
+}
+#events {
+  background-color: white;
+}
+.bigButton + .bigButton {
+  border-radius: 0 10px 10px 0;
+}
+
+.bigButton:hover {
+  background-color: #BDC3C7;
+  font-style: italic;
+}
+.newEvent {
+  text-decoration: none;
+}
+.event {
+  border: solid whitesmoke;
+  border-radius: 30px;
+  margin: 10px;
+  background-color: rgba(171, 171, 172, 0.29);
+}
+.brand {
+  text-decoration: none;
+}
+
+h2.brand {
+  padding-top: 20px;
+  font-style: italic;
+  font-size: 1.75em;
+}
+
+.event:hover {
+  background-color: #BDC3C7;
+  font-style: italic;
+    opacity: .75;
+}

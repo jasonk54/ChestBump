@@ -1,0 +1,48 @@
+{
+  "meteor": {
+    "git": "https://github.com/meteor/meteor.git",
+    "branch": "master",
+    "commit": "bfe4b72ebec4367eaddcdf0887fcf5e649d9dcb8"
+  },
+  "dependencies": {
+    "basePackages": {
+      "font-awesome": {},
+      "moment": {},
+      "fullcalendar": {},
+      "isotope": {},
+      "twilio": {}
+    },
+    "packages": {
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v0.1.3",
+        "commit": "e507577b97827de662866304f8b9d3d553e3912f"
+      },
+      "moment": {
+        "git": "https://github.com/possibilities/meteor-moment.git",
+        "tag": "v1.7.0",
+        "commit": "c64b6ec0e714b9556f4b6643d430b868ba69d3d7"
+      },
+      "fullcalendar": {
+        "git": "https://github.com/TimHeckel/meteor-fullcalendar.git",
+        "tag": "v0.1.0",
+        "commit": "a0e16fafd24973f44e71732ec77b43234867a59e"
+      },
+      "isotope": {
+        "git": "https://github.com/digioak/meteor-isotope.git",
+        "tag": "v0.0.3",
+        "commit": "6fa8d0cd5ad50ea2292f2ce03ea619adc6c13c58"
+      },
+      "twilio": {
+        "git": "https://github.com/cultofmetatron/twilio-meteor.git",
+        "tag": "v1.1.0",
+        "commit": "ca454cabac4b074b4a6a61dfe8c9d118d0934b3a"
+      },
+      "jquery-ui": {
+        "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",
+        "tag": "v1.8.16",
+        "commit": "abda12134b8f3c5db31d6a4864bead6aa3640358"
+      }
+    }
+  }
+}
