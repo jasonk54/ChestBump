@@ -103,3 +103,10 @@ h2.brand {
   font-family: 'Denk One', sans-serif;
 }
 
+#login-buttons {
+  font-style: italic;
+  text-decoration: none;
+  border: solid 1px #1abc9c;
+  background-color: whitesmoke;
+  box-shadow: inset 1px 0 5px rgba(0,0,0,0.5);
+}

@@ -9,7 +9,6 @@ bootstrap
 email
 accounts-facebook
 jquery
-font-awesome
 moment
 fullcalendar
 jquery-ui

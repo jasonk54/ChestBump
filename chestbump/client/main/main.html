@@ -19,12 +19,20 @@
               <li class="active homepage"><a href="#home">Home</a></li>
               <li ><a href="#" class="create">Create</a></li>
               <li ><a href="#" class="join_events">Games</a></li>
-              <li >{{loginButtons}}</li>
+
           </ul>
         </div>
       </div>
     </div>
+        <div class="container">
+      <div class="row">
+        <div class="span12">
+          {{loginButtons}}
+        </div>
+      </div>
+    </div>
   </nav>
+  {{#if currentUser}}
   {{#if showMain}}
   <section id="home" class="section home">
     <div class="container">
@@ -50,7 +58,6 @@
           </div>
         </div>
         <div class="row">
-
         </div>
       </div>
     </section>
@@ -75,5 +82,6 @@
       {{/constant}}
     </div>
   </section>
+  {{/if}}
   {{/if}}
 </template>
